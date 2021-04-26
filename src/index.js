@@ -7,13 +7,11 @@ Window.prototype.$l = function (elSelector) {
     let newAr = Array.from($elementList);
     return new DOMNodeCollection(newAr);
   }
-  if(elSelector instanceof HTMLElement) {
-    return new DOMNodeCollection([elSelector]);;
+  if (elSelector instanceof HTMLElement) {
+    return new DOMNodeCollection([elSelector]);
   }
 };
 
-document.addEventListener("DOMContentLoaded", function() {
-  
+document.addEventListener("DOMContentLoaded", function () {
+  let $lis = window.$l("li");
 });
-
-
