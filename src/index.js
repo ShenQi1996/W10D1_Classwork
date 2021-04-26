@@ -1,9 +1,19 @@
-Window.prototype.$l = function (elSelector) {
-  if (!(typeof elSelector === "string")) {
-    throw new Error("type error: argurment must be a string");
-  }
-  let $elementList = document.querySelectorAll(elSelector);
-  let newAr = Array.from($elementList);
+// const DOMNodeCollection = require("./dom_node_collection");
+import DOMNodeCollection from "./dom_node_collection";
 
-  return newAr;
+Window.prototype.$l = function (elSelector) {
+  if (typeof elSelector === "string") {
+    let $elementList = document.querySelectorAll(elSelector);
+    let newAr = Array.from($elementList);
+    return new DOMNodeCollection(newAr);
+  }
+  if(elSelector instanceof HTMLElement) {
+    return new DOMNodeCollection([elSelector]);;
+  }
 };
+
+document.addEventListener("DOMContentLoaded", function() {
+  
+});
+
+
