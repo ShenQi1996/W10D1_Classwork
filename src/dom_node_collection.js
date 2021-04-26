@@ -29,16 +29,29 @@ class DOMNodeCollection {
     if (arg instanceof DOMNodeCollection) {
       for (let argNode of arg.htmlElements) {
         for (let node of this.htmlElements) {
-          debugger;
           node.appendChild(argNode);
         }
       }
     }
     if (arg instanceof HTMLElement) {
-      arg = window.$l(arg);
+      arg = $l(arg);
       this.append(arg);
     }
   }
+
+  attr(attrName, attrValue) {
+    if(!attrValue) {
+      for(let node of this.htmlElements) {
+        if (node.getAttribute(attrName)) return node.getAttribute(attrName);
+      }
+      return;
+    }
+    // set the attribute value for each element
+    for(let node of this.htmlElements) {
+      node.setAttribute(attrName,attrValue);
+    }
+  }
+
 }
 
 module.exports = DOMNodeCollection;
